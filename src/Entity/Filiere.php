@@ -20,7 +20,7 @@ class Filiere
 
 
     #[ORM\Column]
-    private ?bool $isArchived = null;
+    private ?bool $isArchived = false;
 
     #[ORM\OneToMany(mappedBy: 'filiere', targetEntity: Classe::class)]
     private Collection $classes;

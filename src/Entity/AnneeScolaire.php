@@ -19,7 +19,7 @@ class AnneeScolaire
     private ?string $libelle = null;
 
     #[ORM\Column]
-    private ?bool $isArchived = null;
+    private ?bool $isArchived = false;
 
     #[ORM\OneToMany(mappedBy: 'anneeScolaire', targetEntity: Classe::class)]
     private Collection $classes;

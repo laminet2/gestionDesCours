@@ -22,7 +22,7 @@ class Module
     private Collection $classes;
 
     #[ORM\Column]
-    private ?bool $isArchived = null;
+    private ?bool $isArchived = false;
 
     public function __construct()
     {

@@ -2,31 +2,31 @@
 
 namespace App\Entity;
 
-use App\Repository\GradeRepository;
+use App\Repository\NiveauRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: GradeRepository::class)]
-class Grade
+#[ORM\Entity(repositoryClass: NiveauRepository::class)]
+class Niveau
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 90)]
+    #[ORM\Column(length: 50)]
     private ?string $libelle = null;
 
-    #[ORM\OneToMany(mappedBy: 'grade', targetEntity: Professeur::class)]
-    private Collection $professeurs;
+    #[ORM\OneToMany(mappedBy: 'niveau', targetEntity: Classe::class)]
+    private Collection $classes;
 
     #[ORM\Column]
     private ?bool $isArchived = false;
 
     public function __construct()
     {
-        $this->professeurs = new ArrayCollection();
+        $this->classes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -47,29 +47,29 @@ class Grade
     }
 
     /**
-     * @return Collection<int, Professeur>
+     * @return Collection<int, Classe>
      */
-    public function getProfesseurs(): Collection
+    public function getClasses(): Collection
     {
-        return $this->professeurs;
+        return $this->classes;
     }
 
-    public function addProfesseur(Professeur $professeur): static
+    public function addClass(Classe $class): static
     {
-        if (!$this->professeurs->contains($professeur)) {
-            $this->professeurs->add($professeur);
-            $professeur->setGrade($this);
+        if (!$this->classes->contains($class)) {
+            $this->classes->add($class);
+            $class->setNiveau($this);
         }
 
         return $this;
     }
 
-    public function removeProfesseur(Professeur $professeur): static
+    public function removeClass(Classe $class): static
     {
-        if ($this->professeurs->removeElement($professeur)) {
+        if ($this->classes->removeElement($class)) {
             // set the owning side to null (unless already changed)
-            if ($professeur->getGrade() === $this) {
-                $professeur->setGrade(null);
+            if ($class->getNiveau() === $this) {
+                $class->setNiveau(null);
             }
         }
 
