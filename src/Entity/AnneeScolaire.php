@@ -24,6 +24,8 @@ class AnneeScolaire
     #[ORM\OneToMany(mappedBy: 'anneeScolaire', targetEntity: Classe::class)]
     private Collection $classes;
 
+   
+
     public function __construct()
     {
         $this->classes = new ArrayCollection();
@@ -87,4 +89,7 @@ class AnneeScolaire
 
         return $this;
     }
+
+    
+    
 }

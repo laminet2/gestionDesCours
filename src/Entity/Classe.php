@@ -26,8 +26,7 @@ class Classe
     #[ORM\Column]
     private ?bool $isArchived = false;
 
-    #[ORM\ManyToOne(inversedBy: 'classes')]
-    private ?AnneeScolaire $anneeScolaire = null;
+
 
     #[ORM\ManyToOne(inversedBy: 'classes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -35,6 +34,9 @@ class Classe
 
     #[ORM\ManyToOne(inversedBy: 'classes')]
     private ?Niveau $niveau = null;
+
+    #[ORM\ManyToOne(inversedBy: 'classes')]
+    private ?AnneeScolaire $anneeScolaire = null;
 
     public function __construct()
     {
@@ -96,17 +98,7 @@ class Classe
         return $this;
     }
 
-    public function getAnneeScolaire(): ?AnneeScolaire
-    {
-        return $this->anneeScolaire;
-    }
-
-    public function setAnneeScolaire(?AnneeScolaire $anneeScolaire): static
-    {
-        $this->anneeScolaire = $anneeScolaire;
-
-        return $this;
-    }
+   
 
     public function getFiliere(): ?Filiere
     {
@@ -128,6 +120,18 @@ class Classe
     public function setNiveau(?Niveau $niveau): static
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    public function getAnneeScolaire(): ?AnneeScolaire
+    {
+        return $this->anneeScolaire;
+    }
+
+    public function setAnneeScolaire(?AnneeScolaire $anneeScolaire): static
+    {
+        $this->anneeScolaire = $anneeScolaire;
 
         return $this;
     }

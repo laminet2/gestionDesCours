@@ -15,11 +15,11 @@ class AnneeScolaireFixtures extends Fixture
         // $manager->persist($product);
 
         $datas=["2018","2019","2020","2021"];
-        for ($i=0; $i < count($datas); $i++) { 
+        for ($i=0; $i < count($datas)-1; $i++) {
         
             $anne=new AnneeScolaire();
             $anne->setLibelle($datas[$i]."-".$datas[$i+1]);
-            $this->addReference("Annee".$i,$anne->getLibelle());
+            $this->addReference("Annee".$i,$anne);
             $manager->persist($anne);
 
         }
